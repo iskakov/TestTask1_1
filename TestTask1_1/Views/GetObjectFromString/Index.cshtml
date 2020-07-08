@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Получение объекта из строки";
+}
+
+<h2>Index</h2>
+
+@using (Ajax.BeginForm("ObjectSearch", new AjaxOptions { UpdateTargetId = "results"}))
+{
+    <input type="text" name="qrSt"/>
+    <input type="submit" value="Поиск" />
+}
+<div id="results"></div>
