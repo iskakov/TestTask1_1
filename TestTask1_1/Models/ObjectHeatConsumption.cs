@@ -9,6 +9,7 @@ namespace TestTask1_1.Models
     {
         public Guid PrimaryKey { get; set; }
         public DateTime DateRegistration { get; set; }
-        public int MyProperty { get; set; }
+        public string Name { get; set; }
+        public Consumer Consumer { get; set; }
     }
 }
