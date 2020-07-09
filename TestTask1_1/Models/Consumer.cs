@@ -11,6 +11,6 @@ namespace TestTask1_1.Models
         public Guid PrimaryKey { get; set; }
         
 
-        public int PersonalAccount { get; set; }
+        public string PersonalAccount { get; set; }
     }
 }
