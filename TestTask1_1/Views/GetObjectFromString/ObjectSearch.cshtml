@@ -1,0 +1,35 @@
+﻿@model TestTask1_1.Models.ObjectHeatConsumption
+
+    <div>
+        @ViewBag.Error
+    </div>
+<div>
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateRegistration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateRegistration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Consumer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Consumer.PersonalAccount)
+        </dd>
+    </dl>
+</div>
+
+
