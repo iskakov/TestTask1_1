@@ -22,7 +22,7 @@ namespace TestTask1_1.Controllers
             ObjectHeatConsumption objectHeatConsumption = null;
             string name = "", perAc = "", errorMess = "";
             DateTime dateTime;
-            
+            bool isFirst = false;
             Task1.GenerateQRString.FirstGetObject(qrSt, out name, out dateTime, out perAc);
             if (name.Equals("") || dateTime.Equals(new DateTime()))
             {
@@ -32,17 +32,32 @@ namespace TestTask1_1.Controllers
                     errorMess = "Объект не найден";
                 }
             }
+            else
+            {
+                isFirst = true;
+            }
 
             if (errorMess.Equals(""))
             {
                 for (int i = 0; i < StaticData.Objects.Count; i++)
                 {
                     if (StaticData.Objects[i].Name.Contains(name) &&
-                        StaticData.Objects[i].DateRegistration.Equals(dateTime) &&
                         StaticData.Objects[i].Consumer.PersonalAccount.Contains(perAc))
                     {
-                        objectHeatConsumption = StaticData.Objects[i];
-                        break;
+                        if(isFirst )
+                        {
+                            if (StaticData.Objects[i].DateRegistration.Equals(dateTime))
+                            {
+                                objectHeatConsumption = StaticData.Objects[i];
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            objectHeatConsumption = StaticData.Objects[i];
+                            break;
+                        }
+                        
                     }
                 }
             }

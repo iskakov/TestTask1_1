@@ -7,7 +7,8 @@
 
 @using (Ajax.BeginForm("ObjectSearch", new AjaxOptions { UpdateTargetId = "results"}))
 {
-    <input type="text" name="qrSt"/>
+    <label for="qrst">Введите строку</label>
+    <input id="qrst" type="text" name="qrSt"/>
     <input type="submit" value="Поиск" />
 }
 <div id="results"></div>
