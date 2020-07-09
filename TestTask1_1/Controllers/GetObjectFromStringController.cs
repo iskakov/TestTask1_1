@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TestTask1_1.Models;
+using Task1;
 
 namespace TestTask1_1.Controllers
 {
@@ -17,19 +18,38 @@ namespace TestTask1_1.Controllers
         [HttpPost]
         public ActionResult ObjectSearch(string qrSt)
         {
-            var obj = new ObjectHeatConsumption()
+            //  поиск
+            ObjectHeatConsumption objectHeatConsumption = null;
+            string name = "", perAc = "", errorMess = "";
+            DateTime dateTime;
+            
+            Task1.GenerateQRString.FirstGetObject(qrSt, out name, out dateTime, out perAc);
+            if (name.Equals("") || dateTime.Equals(new DateTime()))
             {
-                PrimaryKey = Guid.NewGuid(),
-                Consumer = new Consumer()
+                GenerateQRString.FirstGetObject(qrSt, out name, out dateTime, out perAc);
+                if (name.Equals("") && perAc.Equals(""))
                 {
-                    PrimaryKey = Guid.NewGuid(),
-                    PersonalAccount = 123456789
-                },
-                DateRegistration = new DateTime(2019, 1, 1),
-                Name = "ШШТОРЕ"
-            };
+                    errorMess = "Объект не найден";
+                }
+            }
 
-            return PartialView(obj);
+            if (errorMess.Equals(""))
+            {
+                for (int i = 0; i < StaticData.Objects.Count; i++)
+                {
+                    if (StaticData.Objects[i].Name.Contains(name) &&
+                        StaticData.Objects[i].DateRegistration.Equals(dateTime) &&
+                        StaticData.Objects[i].Consumer.PersonalAccount.Contains(perAc))
+                    {
+                        objectHeatConsumption = StaticData.Objects[i];
+                        break;
+                    }
+                }
+            }
+
+            ViewBag.Error = errorMess;
+
+            return PartialView(objectHeatConsumption);
         }
 
     }

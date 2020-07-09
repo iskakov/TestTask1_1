@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using TestTask1_1.Models;
 
 namespace TestTask1_1
 {
@@ -12,6 +13,7 @@ namespace TestTask1_1
     {
         protected void Application_Start()
         {
+            StaticData.Generate();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
