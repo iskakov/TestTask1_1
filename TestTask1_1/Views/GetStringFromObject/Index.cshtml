@@ -1,6 +1,7 @@
 ﻿@model TestTask1_1.Models.ObjectHeatConsumption
 
 
+
 @using (Ajax.BeginForm("CreateString", new AjaxOptions { OnSuccess = "onSuccess", UpdateTargetId = "results" }))
 {
     @Html.AntiForgeryToken()
