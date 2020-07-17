@@ -27,7 +27,16 @@ namespace TestTask1_1.Controllers
 
             if (ModelState.IsValid)
             {
-                st = Task1.GenerateQRString.FirstGenerate(objectHeat.Name, (DateTime)objectHeat.DateRegistration, objectHeat.Consumer.PersonalAccount);
+                foreach(var obje in StaticData.Objects)
+                {
+                    if(obje.Name.Equals(objectHeat.Name) && obje.DateRegistration.Equals(objectHeat.DateRegistration) && obje.Consumer.PersonalAccount.Equals(objectHeat.Consumer.PersonalAccount))
+                    {
+                        st = Task1.GenerateQRString.FirstGenerate(objectHeat.Name, (DateTime)objectHeat.DateRegistration, objectHeat.Consumer.PersonalAccount);
+                        break;
+                    }
+                }
+                if (st.Equals(""))
+                    st = "Такого объекта не существует";
                 ViewBag.qrSt = st;
                 return PartialView();
             }

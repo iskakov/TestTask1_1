@@ -22,13 +22,14 @@ namespace TestTask1_1.Models
             return st;
         }
 
+
         public static void Generate()
         {
             var random = new Random();
             var list = new List<Consumer>();
             for(int i = 0; i < 5; i++)
             {
-                list.Add(new Consumer() { PrimaryKey = Guid.NewGuid(), PersonalAccount = GenerateSt("0123456789", 8) });
+                list.Add(new Consumer() { PrimaryKey = Guid.NewGuid(), PersonalAccount = GenerateSt(random, "0123456789", 8) });
             }
 
             for(int i = 0; i<50; i++)
@@ -38,9 +39,23 @@ namespace TestTask1_1.Models
                     PrimaryKey = Guid.NewGuid(),
                     Consumer = list[random.Next(0, list.Count)],
                     DateRegistration = new DateTime(random.Next(2018, 2021), random.Next(1, 12), random.Next(1, 28)), 
-                    Name = GenerateSt("АБВГДЕЖЗИКЛМНОПРСТУФХЦШЩЭЮЯ", 6)
+                    Name = GenerateSt(random, "АБВГДЕЖЗИКЛМНОПРСТУФХЦШЩЭЮЯ", 6)
                 });
             }
+        }
+
+
+        private static string GenerateSt(Random random, string Alpha, int length)
+        {
+            var st = "";
+            
+            for (int i = 0; i < length; i++)
+            {
+                int pos = random.Next(0, Alpha.Length);
+                st += Alpha[pos];
+            }
+
+            return st;
         }
     }
 }

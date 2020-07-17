@@ -16,7 +16,7 @@ namespace TestTask1_1
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "GetObjectFromString", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Information", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
